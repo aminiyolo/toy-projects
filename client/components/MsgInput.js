@@ -11,8 +11,17 @@ const MsgInput = ({ mutate, id = undefined, text = "" }) => {
     mutate(text, id);
   };
 
+  const onKeyPress = (e) => {
+    if (e.key === "Enter") onSubmit(e);
+    else return;
+  };
+
   return (
-    <form className="messages__input" onSubmit={onSubmit}>
+    <form
+      className="messages__input"
+      onSubmit={onSubmit}
+      onKeyPress={onKeyPress}
+    >
       <textarea
         ref={textRef}
         defaultValue={text}

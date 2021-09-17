@@ -9,10 +9,12 @@ const MsgItem = ({
   startEdit,
   isEditing,
   onDelete,
+  myId,
+  user,
 }) => (
   <li className="messages__item">
     <h3>
-      {userId}{" "}
+      {user.nickname}{" "}
       <sub>
         {new Date(timestamp).toLocaleString("ko-KR", {
           year: "numeric",
@@ -31,10 +33,12 @@ const MsgItem = ({
     ) : (
       text
     )}
-    <div className="message__buttons">
-      <button onClick={startEdit}>수정하기</button>
-      <button onClick={onDelete}>삭제하기</button>
-    </div>
+    {myId === userId && (
+      <div className="message__buttons">
+        <button onClick={startEdit}>수정하기</button>
+        <button onClick={onDelete}>삭제하기</button>
+      </div>
+    )}
   </li>
 );
 
